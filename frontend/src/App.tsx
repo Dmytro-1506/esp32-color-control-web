@@ -2,12 +2,28 @@ import { useState } from "react";
 import { RgbColorPicker } from "react-colorful";
 import "./App.css";
 
+import { sendColor } from "./api/colorApi";
+
 function App() {
   const [color, setColor] = useState({
     r: 96,
     g: 14,
     b: 66,
   });
+
+  const handleSetLED = async () => {
+  try {
+    const response = await sendColor({
+      red: color.r,
+      green: color.g,
+      blue: color.b,
+    });
+
+    console.log("Backend:", response);
+  } catch (error) {
+    console.error("Fehler:", error);
+  }
+};
 
   return (
     <div className="app">
@@ -35,7 +51,7 @@ function App() {
             RGB: {color.r}, {color.g}, {color.b}
           </p>
 
-          <button className="set-led-button">
+          <button className="set-led-button" onClick={handleSetLED}>
             setLED
           </button>
         </div>
