@@ -1,12 +1,6 @@
-import express from "express";
-
-const app = express();
+import app from "./app.js";
 
 const PORT = 3000;
-
-app.get("/", (req, res) => {
-  res.send("Backend funktioniert!");
-});
 
 app.listen(PORT, () => {
   console.log(`Server läuft auf http://localhost:${PORT}`);
